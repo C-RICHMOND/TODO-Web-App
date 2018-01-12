@@ -1,3 +1,4 @@
+
 <?php 
 require_once("DbConfig.php");
 ?>
@@ -5,6 +6,11 @@ require_once("DbConfig.php");
 <html lang="en">
 <head>
 	<title>ToDo</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -46,6 +52,7 @@ require_once("DbConfig.php");
 		padding-left: 15px;
 	}
 }
+
 </style>
 <body>
 <nav class="navbar navbar-default">
@@ -73,6 +80,9 @@ require_once("DbConfig.php");
 			<h2 class="col-header">Late</h2>
 		</div>
 	</div>	
+	<div style="text-align: center";>
+		<button type="button" class="btn btn-primary">Create Task</button>
+	</div>
 </div>
 </body>
 </html>

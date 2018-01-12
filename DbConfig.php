@@ -8,7 +8,7 @@ class db
 		$username = "username";
 		$password = "password";
 		
-		global $conn = mysqli_connect($servername, $username, $password);
+		$conn = mysqli_connect($servername, $username, $password);
 		
 		if(mysqli_connect_error())
 		{
@@ -25,12 +25,14 @@ class db
 	//LOOK INTO GENERATING DB SCRIPT WITH PHPADMIN
 	public function create_Database()
 	{
-		
 		$sql = "CREATE DATABASE ToDo";
 		mysqli_query($conn, $sql);
-		
+
 	}
 }
+
+$obj_db = new db();
+$obj_db->open_connection();
 
 
 ?>

@@ -5,15 +5,19 @@ class db
 	public function open_connection() 
 	{
 		$servername = "localhost";
-		$username = "username";
-		$password = "password";
+		$username = "crichmond";   //input mysql username here
+		$password = "helloworld1"; //input mysql password here
+		$database = "todo_app";
 		
-		$conn = mysqli_connect($servername, $username, $password);
+		//REMOVE port # upon upload
+		$conn = mysqli_connect($servername, $username, $password, $database, 3308);
 		
 		if(mysqli_connect_error())
 		{
 			echo "Unable to connect to MySQL: " . mysqli_connect_error();
 		}
+		
+		$_SESSION['conn'] = $conn;
 	}
 	
 	//Close connection to MySQL Database

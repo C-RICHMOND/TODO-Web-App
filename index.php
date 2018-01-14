@@ -1,16 +1,26 @@
 
 <?php 
+session_start();
 require_once("DbConfig.php");
+
+$conn = $_SESSION['conn'];
+$resultPending = mysqli_query($conn, "SELECT COUNT(*) FROM pending_tasks");
+$numPending = mysqli_fetch_row($resultPending);
+
+$resultStarted = mysqli_query($conn, "SELECT COUNT(*) FROM started_tasks");
+$numStarted = mysqli_fetch_row($resultStarted);
+
+$resultCompleted = mysqli_query($conn, "SELECT COUNT(*) FROM completed_tasks");
+$numCompleted = mysqli_fetch_row($resultCompleted);
+
+$resultLate = mysqli_query($conn, "SELECT COUNT(*) FROM late_tasks");
+$numLate = mysqli_fetch_row($resultLate);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>ToDo</title>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -62,30 +72,30 @@ require_once("DbConfig.php");
 </nav>
 <div class="container-fluid">
 	<div style="text-align: center; padding-bottom: 15px;">
-		<button type="button" class="btn btn-primary">Create New Task</button>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">Create New Task</button>
 	</div>
 	<div class="row" style="position: relative;">
 		<div class="col-md-3" id="pending">
-			<div class="pad">
-				<h2 class="col-header">Pending</h2>
-			</div>
+			<h2 class="col-header">Pending Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numPending[0]; ?></span></h2>
 		</div>
 		<div class="col-md-3 col-border" id="started">
-			<h2 class="col-header">Started</h2>
+			<h2 class="col-header">Started Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numStarted[0]; ?></span></h2>
 		</div>
 		<div class="col-md-3 col-border" id="completed">
-			<h2 class="col-header">Completed</h2>
+			<h2 class="col-header">Completed Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numCompleted[0]; ?></span></h2>
 		</div>
 		<div class="col-md-3 col-border" id="late">
-			<h2 class="col-header">Late</h2>
+			<h2 class="col-header">Late Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numLate[0]; ?></span></h2>
 		</div>
 	</div>	
-	<div style="text-align: center";>
-		<button type="button" class="btn btn-primary">Create Task</button>
-	</div>
+	<div id="modal">
+    	<?php include("newTaskModal.php"); ?>
+    </div>
 </div>
 </body>
 </html>
 
 
-<?php ?>
+<?php 
+
+?>

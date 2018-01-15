@@ -5,12 +5,12 @@ class db
 	public function open_connection() 
 	{
 		$servername = "localhost";
-		$username = "crichmond";   //input mysql username here
-		$password = "helloworld1"; //input mysql password here
+		$username = "";   //input mysql username here
+		$password = ""; //input mysql password here
 		$database = "todo_app";
 		
 		//REMOVE port # upon upload
-		$conn = mysqli_connect($servername, $username, $password, $database, 3308);
+		$conn = mysqli_connect($servername, $username, $password, $database);
 		
 		if(mysqli_connect_error())
 		{

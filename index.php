@@ -51,6 +51,7 @@ $total = $numPending[0] + $numStarted[0] + $numCompleted[0] + $numLate[0];
 		border-radius: 25px;
 		border: 2px solid;
 		padding: 15px 15px 15px 15px;
+		background-color: #88BBD6;
 	}
 	
 	#pending-tasks, #started-tasks, #completed-tasks, #late-tasks {

@@ -44,6 +44,17 @@ $numLate = mysqli_fetch_row($resultLate);
 		text-align: center;
 	}
 	
+	.task {
+		text-align: center;
+		border-radius: 25px;
+		border: 2px solid;
+		padding: 15px 15px 15px 15px;
+	}
+	
+	#pending-tasks {
+		display: none;
+	}
+	
 @media (min-width: 768px)
 {
 	.col-border {
@@ -61,6 +72,7 @@ $numLate = mysqli_fetch_row($resultLate);
 	.pad {
 		padding-left: 15px;
 	}
+	
 }
 
 </style>
@@ -75,8 +87,8 @@ $numLate = mysqli_fetch_row($resultLate);
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">Create New Task</button>
 	</div>
 	<div class="row" style="position: relative;">
-		<div class="col-md-3" id="pending" onclick="displayTasks();>
-			<h2 class="col-header">Pending Tasks:<span style="padding-left: 20px;"><?php echo $numPending[0]; ?></span></h2>
+		<div class="col-md-3">
+			<h2 class="col-header" onclick="displayTasks();">Pending Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numPending[0]; ?></span></h2>
 			<div id="pending-tasks">
 				<?php include("generatePendingTasks.php"); ?>
 			</div>
@@ -91,18 +103,23 @@ $numLate = mysqli_fetch_row($resultLate);
 			<h2 class="col-header">Late Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numLate[0]; ?></span></h2>
 		</div>
 	</div>	
-	<div id="modal">
+	<div id="new-task">
     	<?php include("newTaskModal.php"); ?>
     </div>
 </div>
-</body>
-</html>
 <script>
 function displayTasks() {
-
-	
+	var display = $('#pending-tasks').css('display');
+	if(display == "none") {
+		$('#pending-tasks').show();
+	} else {
+		$('#pending-tasks').hide();
+	}
 }
 </script>
+</body>
+</html>
+
 
 <?php 
 

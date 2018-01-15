@@ -16,6 +16,8 @@ $numCompleted = mysqli_fetch_row($resultCompleted);
 $resultLate = mysqli_query($conn, "SELECT COUNT(*) FROM late_tasks");
 $numLate = mysqli_fetch_row($resultLate);
 
+$total = $numPending[0] + $numStarted[0] + $numCompleted[0] + $numLate[0];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +87,9 @@ $numLate = mysqli_fetch_row($resultLate);
 <div class="container-fluid">
 	<div style="text-align: center; padding-bottom: 15px;">
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">Create New Task</button>
+	</div>
+	<div style="text-align: center">
+		<h2>Total Tasks:  <?php echo $total;?></h2>
 	</div>
 	<div class="row" style="position: relative;">
 		<div class="col-md-3">

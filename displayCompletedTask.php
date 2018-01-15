@@ -24,6 +24,7 @@
         		<span style="float: right;"><button type="button" class="btn btn-default" style="padding: 10px 10px 10px 10px;" onclick="deleteCompletedTask();">Delete</button></span>
       		</div>
       	<div class="modal-body">
+      	<p> <b>If you change an items status, make sure to delete the old to-do item with the previous status!</b></p>
       	<form method="post" id="editTaskForm" action="updateTask.php">
       		<input type="hidden" name="id" id="displayCompletedId">
       		<input type="hidden" name="preEditStatus" value="Completed"> <!-- This input will be used to determine if the status has changed -->

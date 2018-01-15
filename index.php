@@ -75,8 +75,11 @@ $numLate = mysqli_fetch_row($resultLate);
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTaskModal">Create New Task</button>
 	</div>
 	<div class="row" style="position: relative;">
-		<div class="col-md-3" id="pending">
-			<h2 class="col-header">Pending Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numPending[0]; ?></span></h2>
+		<div class="col-md-3" id="pending" onclick="displayTasks();>
+			<h2 class="col-header">Pending Tasks:<span style="padding-left: 20px;"><?php echo $numPending[0]; ?></span></h2>
+			<div id="pending-tasks">
+				<?php include("generatePendingTasks.php"); ?>
+			</div>
 		</div>
 		<div class="col-md-3 col-border" id="started">
 			<h2 class="col-header">Started Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numStarted[0]; ?></span></h2>
@@ -94,7 +97,12 @@ $numLate = mysqli_fetch_row($resultLate);
 </div>
 </body>
 </html>
+<script>
+function displayTasks() {
 
+	
+}
+</script>
 
 <?php 
 

@@ -25,14 +25,6 @@ class db
 	{
 		mysqli_close();
 	}
-	
-	//LOOK INTO GENERATING DB SCRIPT WITH PHPADMIN
-	public function create_Database()
-	{
-		$sql = "CREATE DATABASE ToDo";
-		mysqli_query($conn, $sql);
-
-	}
 }
 
 $obj_db = new db();

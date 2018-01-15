@@ -4,6 +4,6 @@ Installation and Deployment:
 3. Add your mysql username and password to DbConfig.php
 4. Download WAMPServer
 5. Put project files within the 'www' folder. 
-6. Navigate to 'localhost/ToDo_Application' in your web browser.
+6. Navigate to 'http://localhost/todo-web-app-master/' in your web browser.
 
 Created by: Christopher Richmond - fp3813

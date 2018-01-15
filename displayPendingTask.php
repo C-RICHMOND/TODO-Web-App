@@ -15,17 +15,18 @@
 	}
 	
 </style>
-<div id="displayTaskModal" class="modal fade" role="dialog">
+<div id="displayPendingTaskModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal">&times;</button>
         		<h2 class="modal-title" style="float: left;">Pending Task</h2>
-        		<span style="float: right;"><button type="button" class="btn btn-default" style="padding: 10px 10px 10px 10px;" onclick="deleteTask();">Delete</button></span>
+        		<span style="float: right;"><button type="button" class="btn btn-default" style="padding: 10px 10px 10px 10px;" onclick="deletePendingTask();">Delete</button></span>
       		</div>
       	<div class="modal-body">
-      	<form method="post" id="editTaskForm" action="newTask.php">
+      	<form method="post" id="editTaskForm" action="updateTask.php">
       		<input type="hidden" name="id" id="displayId">
+      		<input type="hidden" name="preEditStatus" value="Pending"> <!-- This input will be used to determine if the status has changed -->
       		<div>
       			<span>Title:<input type="text" class="textbox" id="displayTitle" name="taskTitle" ></span>
       		</div>
@@ -57,7 +58,7 @@
   </div>
 </div>
 <script>
-function deleteTask() {
+function deletePendingTask() {
 	var id = $('#displayId').val();
 	$.ajax({url: 'deleteTask.php',
 		data: {status: 'pending', id: id}, 

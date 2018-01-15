@@ -9,27 +9,15 @@
 		</div>
 		
 	<div id="view-task">
-    	<?php include("displayTask.php"); ?>
+    	<?php include("displayPendingTask.php"); ?>
     </div>
 	<?php 	
 	}
 ?>
 
-<Script>
-	var id;
-
-	//function used to determine if a pending task has been clicked
-	$(document).click(function(e){
-		id = e.target.id; 
-		idTemp = id.split('_')[0];
-
-		if(idTemp == "pendingTask") {
-			id = id.split('_')[1]; //get actual pending task id
-			displayTaskModal();
-		} 
-	});
-	function displayTaskModal() {
-		
+<script>
+	
+	function displayPendingTaskModal() {
 		$.ajax({url: 'getTaskData.php',
 				data: {status: 'pending', id: id}, 
 				type: 'post',
@@ -41,17 +29,9 @@
 					$('#displayStartDate').val(taskData['start_date']);
 					$('#displayEndDate').val(taskData['end_date']);
 					$('#displayDescription').val(taskData['description']);
-					$('#displayTaskModal').modal('toggle');
+					$('#displayPendingTaskModal').modal('toggle');
 				}
 			});
-
-		
-		//CREATE AJAX FUNCTION TO GET CORRESPONDING PHP DATA FROM MYSQL
-		//USE DATA IN DISPLAY MODAL; ADD STATUS INPUT
-		//TWO BUTTONS AT TOP: EDIT AND DELETE
-			//EDIT: ENABLE TEXTBOXES AND MAKE SAVE BUTTON AT BOTTOM VISIBLE
-			//		CREATE NEW FILE updateTask.php WHICH WILL CALL CLASS FUNCTION TO UPDATE INFO
-			//DELETE: CALL APPROPRIATE DELETE FUNCTION AND REROUTE TO INDEX.PHPs
 	}
-</Script>
+</script>
 

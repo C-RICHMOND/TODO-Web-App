@@ -51,7 +51,7 @@ $numLate = mysqli_fetch_row($resultLate);
 		padding: 15px 15px 15px 15px;
 	}
 	
-	#pending-tasks {
+	#pending-tasks, #started-tasks, #completed-tasks, #late-tasks {
 		display: none;
 	}
 	
@@ -88,19 +88,28 @@ $numLate = mysqli_fetch_row($resultLate);
 	</div>
 	<div class="row" style="position: relative;">
 		<div class="col-md-3">
-			<h2 class="col-header" onclick="displayTasks();">Pending Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numPending[0]; ?></span></h2>
+			<h2 class="col-header" onclick="displayPendingTasks();">Pending Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numPending[0]; ?></span></h2>
 			<div id="pending-tasks">
 				<?php include("generatePendingTasks.php"); ?>
 			</div>
 		</div>
 		<div class="col-md-3 col-border" id="started">
-			<h2 class="col-header">Started Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numStarted[0]; ?></span></h2>
+			<h2 class="col-header" onclick="displayStartedTasks();">Started Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numStarted[0]; ?></span></h2>
+			<div id="started-tasks">
+				<?php include("generateStartedTasks.php"); ?>
+			</div>
 		</div>
 		<div class="col-md-3 col-border" id="completed">
-			<h2 class="col-header">Completed Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numCompleted[0]; ?></span></h2>
+			<h2 class="col-header" onclick="displayCompletedTasks();">Completed Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numCompleted[0]; ?></span></h2>
+			<div id="completed-tasks">
+				<?php include("generateCompletedTasks.php"); ?>
+			</div>
 		</div>
 		<div class="col-md-3 col-border" id="late">
-			<h2 class="col-header">Late Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numLate[0]; ?></span></h2>
+			<h2 class="col-header" onclick="displayLateTasks();">Late Tasks:<span style="padding-left: 20px; color=red;"><?php echo $numLate[0]; ?></span></h2>
+			<div id="late-tasks">
+				<?php include("generateLateTasks.php"); ?>
+			</div>
 		</div>
 	</div>	
 	<div id="new-task">
@@ -108,7 +117,7 @@ $numLate = mysqli_fetch_row($resultLate);
     </div>
 </div>
 <script>
-function displayTasks() {
+function displayPendingTasks() {
 	var display = $('#pending-tasks').css('display');
 	if(display == "none") {
 		$('#pending-tasks').show();
@@ -116,6 +125,56 @@ function displayTasks() {
 		$('#pending-tasks').hide();
 	}
 }
+
+function displayStartedTasks() {
+	var display = $('#started-tasks').css('display');
+	if(display == "none") {
+		$('#started-tasks').show();
+	} else {
+		$('#started-tasks').hide();
+	}
+}
+
+function displayCompletedTasks() {
+	var display = $('#completed-tasks').css('display');
+	if(display == "none") {
+		$('#completed-tasks').show();
+	} else {
+		$('#completed-tasks').hide();
+	}
+}
+
+function displayLateTasks() {
+	var display = $('#late-tasks').css('display');
+	if(display == "none") {
+		$('#late-tasks').show();
+	} else {
+		$('#late-tasks').hide();
+	}
+}
+
+var id;
+var status;
+//function used to determine if a pending task has been clicked
+$(document).click(function(e){
+	id = e.target.id; 
+	idTemp = id.split('_')[0];
+
+	if(idTemp == "pendingTask") {
+		id = id.split('_')[1]; //get actual pending task id
+		displayPendingTaskModal();
+	} else if(idTemp == "startedTask") {
+		id = id.split('_')[1]; //get actual pending task id
+		displayStartedTaskModal();
+	} else if(idTemp =="completedTask") {
+		id = id.split('_')[1]; //get actual pending task id
+		displayCompletedTaskModal();
+	} else {
+		id = id.split('_')[1]; //get actual pending task id
+		displayLateTaskModal();
+	}
+});
+
 </script>
 </body>
 </html>

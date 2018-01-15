@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require_once("DbConfig.php");
 $conn = $_SESSION['conn'];
@@ -9,9 +9,9 @@ if(isset($_POST['status']) && !empty($_POST['status'])) {
 	
 	if($status == 'pending') {
 		$table = "pending_tasks";
-	} else if ($status == 'started_tasks') {
+	} else if ($status == 'started') {
 		$table = "started_tasks";
-	} else if ($status == 'completed_tasks') {
+	} else if ($status == 'completed') {
 		$table = "completed_tasks";
 	} else {
 		$table = "late_tasks";
@@ -23,6 +23,5 @@ if(isset($_POST['status']) && !empty($_POST['status'])) {
 	} else {
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
-
 }
 ?>

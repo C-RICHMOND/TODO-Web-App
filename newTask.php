@@ -17,7 +17,7 @@ if(isset($_POST['btn_submit'])) {
 			$obj_user->addTask($taskData);
 		} else {
 			$obj_user = new started_task();
-			$obj_user->saveTask($taskData);
+			$obj_user->addTask($data);
 		}
-	}
+}
 ?>

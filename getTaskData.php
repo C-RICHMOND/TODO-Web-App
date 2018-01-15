@@ -9,9 +9,9 @@ if(isset($_POST['status']) && !empty($_POST['status'])) {
 	
 	if($status == 'pending') {
 		$table = "pending_tasks";
-	} else if ($status == 'started_tasks') {
+	} else if ($status == 'started') {
 		$table = "started_tasks";
-	} else if ($status == 'completed_tasks') {
+	} else if ($status == 'completed') {
 		$table = "completed_tasks";
 	} else {
 		$table = "late_tasks";
